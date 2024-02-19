@@ -10,7 +10,7 @@ let allChecked = false;
 
 form.addEventListener('submit', addToDo);
 checkList.addEventListener('click', deleteTodo);
-chooseAll.addEventListener('click', markAllTodos);
+chooseAll.addEventListener('mousedown', markAllTodos);
 clearCompletedButton.addEventListener('click', deleteAllCompleted);
 filterButtons.forEach((button) => {
     button.addEventListener('click', () => {
@@ -32,6 +32,7 @@ function addToDo(event) {
 
     chooseAll.style.display = "block";
     chooseAll.textContent = "🔽"
+
 
     if (todoInput.value.trim() !== '') {
         let newTodo = document.createElement('li');
@@ -134,22 +135,6 @@ function filterTodoList() {
     });
 
     updateCounter();
-}
-
-function markTodo(event) {
-    let checkbox = event.target;
-    let todo = checkbox.parentElement;
-    todo.classList.toggle('completed'); // Byt 'todoCompleted' mot 'completed' om det är nödvändigt
-
-    // Uppdatera clearCompleted-knappen baserat på om det finns någon markerad anteckning
-    updateClearCompletedButton();
-
-    updateCounter();
-}
-
-function updateClearCompletedButton() {
-    let anyCompleted = document.querySelector('.checklist li.completed');
-    clearCompletedButton.style.display = anyCompleted ? 'flex' : 'none';
 }
 
 //Metoder kvar:
