@@ -12,6 +12,8 @@ form.addEventListener('submit', addToDo);
 checkList.addEventListener('click', deleteTodo);
 chooseAll.addEventListener('mousedown', markAllTodos);
 clearCompletedButton.addEventListener('click', deleteAllCompleted);
+checkList.addEventListener('change', markTodo);
+
 filterButtons.forEach((button) => {
     button.addEventListener('click', () => {
         filterStatus = button.id.replace('-button', '');
@@ -55,7 +57,6 @@ function addToDo(event) {
         checkList.append(newTodo);
 
         statsContainer.style.display = "flex";
-        // Nollställ värden i sökfältet
         todoInput.value = '';
     }
 
@@ -63,7 +64,6 @@ function addToDo(event) {
 
 }
 
-//metod för att markera alla todos
 function markAllTodos() {
     let allaCheckboxes = document.querySelectorAll('.li-checkbox');
     allaCheckboxes.forEach((checkbox) => {
@@ -83,7 +83,20 @@ function markAllTodos() {
 
 }
 
-//metod för att ta bort EN todo
+function handleCompletedButton(){
+
+    let markedTodos = document.querySelectorAll('.checklist li.completed');
+    clearCompletedButton.style.display = markedTodos.length > 0 ? 'flex' : 'none';
+
+}
+
+function handleStatsContainer() {
+    let remainingTodos = document.querySelectorAll('.checklist li');
+    if (remainingTodos.length === 0) {
+        statsContainer.style.display = "none";
+    }
+}
+
 function deleteTodo(event) {
     let removeTodo = event.target;
 
@@ -91,8 +104,14 @@ function deleteTodo(event) {
         removeTodo.parentNode.remove();
     }
 
+    let remainingTodos = document.querySelectorAll('.checklist li');
+    if (remainingTodos.length === 0) {
+        statsContainer.style.display = "none";
+    }
+    
     updateCounter();
-};
+    handleStatsContainer();
+}
 
 function deleteAllCompleted() {
     let allItems = document.querySelectorAll('.checklist li');
@@ -106,6 +125,9 @@ function deleteAllCompleted() {
     });
 
     updateCounter();
+    
+    handleCompletedButton();
+    handleStatsContainer();
 }
 
 //metod för att filtrera färdiga anteckningar
@@ -137,8 +159,16 @@ function filterTodoList() {
     updateCounter();
 }
 
+function markTodo(event) {
+    let checkbox = event.target;
+    let todo = checkbox.parentElement;
+    todo.classList.toggle('completed');
+
+    handleCompletedButton();
+    updateCounter();
+}
+
 //Metoder kvar:
-//Ta bort alla anteckningar checkade anteckningar
 //Övrigt: Ställa in CSS, exempelvis stryka över färgida anteckningar
 //skriva tester
 //responsive
