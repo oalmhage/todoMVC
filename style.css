@@ -24,15 +24,14 @@ h1 {
 }
  
 .input-container {
-    width: 100%;
+    /* width: 100%; */
     position: relative;
- 
+    
 }
  
 .checklist{
     width: 100%;
-    position: relative;
- 
+    position: relative;    
 }
  
 .checklist li {
@@ -42,7 +41,6 @@ h1 {
     font-size: 20px;
     list-style-type: none;
     display: flex;
-    align-items: center;
 }
  
 .li-checkbox {
@@ -50,14 +48,25 @@ h1 {
     height: 30px;
     margin-right: 20px;
 }
+
+.remove-button {
+    margin-left: auto;
+}
+
+#choose-all {
+    position: absolute;
+    top: 50%;
+    left: 10px; /* Justera detta värde för att ändra avståndet från högerkanten */
+    transform: translateY(-50%);    
+}
  
 #new-todo {
     width: 100%;
+    margin:0;
     position: relative;
-    padding: 20px;
+    padding: 16px 16px 16px 40px;    
     border: rgb(224, 222, 225);
 }
- 
  
 .stats-container {
     display: none;
