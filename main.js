@@ -29,6 +29,12 @@ function updateCounter() {
     counter.textContent = `${count} Items left`;
 }
 
+function resetCounter() {
+    let allTodos = document.querySelectorAll('.checklist li');
+    let count = allTodos.length;
+    counter.textContent = `${count} Items left`;
+}
+
 function addToDo(event) {
     event.preventDefault();
 
@@ -73,14 +79,14 @@ function markAllTodos() {
     allChecked = !allChecked;
 
     if (allChecked) {
-        clearCompletedButton.style.display = "flex";
+        clearCompletedButton.style.display = "flex";        
+        resetCounter(); // Återställ räkningen när du markerar alla
     }
     else {
         clearCompletedButton.style.display = "none";
+        updateCounter();
+
     }
-
-    updateCounter();
-
 }
 
 function handleCompletedButton(){
