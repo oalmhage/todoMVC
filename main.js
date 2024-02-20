@@ -7,146 +7,152 @@ let checkList = document.querySelector(".checklist");
 let filterButtons = document.querySelectorAll('.filter-item');
 let clearCompletedButton = document.querySelector("#clear-completed-button");
 let allChecked = false;
-
+let count = 0;
+ 
 form.addEventListener('submit', addToDo);
 checkList.addEventListener('click', deleteTodo);
 chooseAll.addEventListener('mousedown', markAllTodos);
 clearCompletedButton.addEventListener('click', deleteAllCompleted);
 checkList.addEventListener('change', markTodo);
-
+ 
 filterButtons.forEach((button) => {
     button.addEventListener('click', () => {
         filterStatus = button.id.replace('-button', '');
-
+ 
         filterTodoList();
-
+ 
     });
 });
-
+ 
 function updateCounter() {
-    let uncheckedTodos = document.querySelectorAll('.checklist li:not(.completed) .li-checkbox:not(:checked)');
-    let count = uncheckedTodos.length;
+    let uncheckedTodos = document.querySelectorAll('.li-checkbox:not(:checked)');
+    count = uncheckedTodos.length;
     counter.textContent = `${count} Items left`;
 }
-
+ 
 function resetCounter() {
     let allTodos = document.querySelectorAll('.checklist li');
-    let count = allTodos.length;
+    count = allTodos.length;
     counter.textContent = `${count} Items left`;
 }
-
+ 
 function addToDo(event) {
     event.preventDefault();
-
-    chooseAll.style.display = "block";
-    chooseAll.textContent = "🔽"
-
-
+ 
     if (todoInput.value.trim() !== '') {
+ 
+        chooseAll.style.display = "inline-block";
+        chooseAll.textContent = "❯"
+ 
         let newTodo = document.createElement('li');
         let checkbox = document.createElement('input');
         let removeButton = document.createElement('button');
         let textNode = document.createElement('p');
-
+ 
         checkbox.type = 'checkbox';
         checkbox.classList.add('li-checkbox');
         newTodo.append(checkbox);
-
+ 
         //här skapas texten
         textNode.textContent = todoInput.value.trim();
         newTodo.append(textNode);
-
-        removeButton.textContent = '❌';
+ 
+        removeButton.textContent = '🗙';
         removeButton.classList.add('remove-button');
         newTodo.append(removeButton);
-
+ 
         checkList.append(newTodo);
-
+ 
         statsContainer.style.display = "flex";
         todoInput.value = '';
     }
-
+ 
     updateCounter();
-
+ 
 }
-
+ 
 function markAllTodos() {
     let allaCheckboxes = document.querySelectorAll('.li-checkbox');
     allaCheckboxes.forEach((checkbox) => {
         checkbox.checked = !allChecked;
     });
-
+ 
     allChecked = !allChecked;
-
+ 
     if (allChecked) {
-        clearCompletedButton.style.display = "flex";        
-        resetCounter(); // Återställ räkningen när du markerar alla
+        clearCompletedButton.style.display = "flex";
+        updateCounter(); // Återställ räkningen när du markerar alla
+       
     }
     else {
         clearCompletedButton.style.display = "none";
-        updateCounter();
-
+        resetCounter();
     }
 }
-
-function handleCompletedButton(){
-
+ 
+function handleCompletedButton() {
+ 
     let markedTodos = document.querySelectorAll('.checklist li.completed');
     clearCompletedButton.style.display = markedTodos.length > 0 ? 'flex' : 'none';
-
+ 
 }
-
-function handleStatsContainer() {
+ 
+function handleStatsContainerAndChooseAll() {
     let remainingTodos = document.querySelectorAll('.checklist li');
     if (remainingTodos.length === 0) {
         statsContainer.style.display = "none";
+        chooseAll.style.display = 'none';
     }
 }
-
+ 
 function deleteTodo(event) {
     let removeTodo = event.target;
-
+ 
     if (removeTodo.classList.contains('remove-button')) {
         removeTodo.parentNode.remove();
     }
-
-    let remainingTodos = document.querySelectorAll('.checklist li');
-    if (remainingTodos.length === 0) {
-        statsContainer.style.display = "none";
-    }
-    
+ 
     updateCounter();
-    handleStatsContainer();
+    handleStatsContainerAndChooseAll();
 }
-
+ 
 function deleteAllCompleted() {
     let allItems = document.querySelectorAll('.checklist li');
-
+ 
     allItems.forEach((item) => {
         let checkbox = item.querySelector('.li-checkbox');
-
+ 
         if (checkbox.checked) {
             item.remove();
         }
     });
-
+ 
     updateCounter();
-    
+ 
     handleCompletedButton();
-    handleStatsContainer();
+    handleStatsContainerAndChooseAll();
 }
-
+ 
+function markTodo(event) {
+    let checkbox = event.target;
+    let todo = checkbox.parentElement;
+    todo.classList.toggle('completed');
+ 
+    handleCompletedButton();
+    updateCounter();
+}
+ 
 //metod för att filtrera färdiga anteckningar
 //och ej färdiga anteckningar
 function filterTodoList() {
-
+ 
     let allItems = document.querySelectorAll('.checklist li');
-
+ 
     allItems.forEach((item) => {
         let checkbox = item.querySelector('.li-checkbox');
-
+ 
         switch (filterStatus) {
-
+ 
             case "All":
                 item.style.display = "flex";
                 break;
@@ -159,22 +165,13 @@ function filterTodoList() {
             default:
                 item.style.display = 'flex';
         }
-
+ 
     });
-
     updateCounter();
-}
-
-function markTodo(event) {
-    let checkbox = event.target;
-    let todo = checkbox.parentElement;
-    todo.classList.toggle('completed');
-
-    handleCompletedButton();
-    updateCounter();
-}
-
-//Metoder kvar:
-//Övrigt: Ställa in CSS, exempelvis stryka över färgida anteckningar
-//skriva tester
-//responsive
+    }
+ 
+//Kvar att göra:
+//fixa bugg med countern-Veronica - klar
+//Övrigt: Ställa in CSS, exempelvis stryka över färdiga anteckningar -Oskar
+//skriva tester-Veronica
+//responsive-Oskar/Veronica
