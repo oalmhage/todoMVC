@@ -55,6 +55,7 @@ function addToDo(event) {
  
         //här skapas texten
         textNode.textContent = todoInput.value.trim();
+        textNode.classList.add('text');
         newTodo.append(textNode);
  
         removeButton.textContent = '🗙';
@@ -63,7 +64,7 @@ function addToDo(event) {
  
         checkList.append(newTodo);
  
-        statsContainer.style.display = "flex";
+        statsContainer.style.display = "grid";
         todoInput.value = '';
     }
  
