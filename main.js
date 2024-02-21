@@ -6,6 +6,7 @@ let statsContainer = document.querySelector(".stats-container");
 let checkList = document.querySelector(".checklist");
 let filterButtons = document.querySelectorAll('.filter-item');
 let clearCompletedButton = document.querySelector("#clear-completed-button");
+document.getElementById("all-button").classList.add("active");
 let allChecked = false;
 let count = 0;
  
@@ -17,12 +18,17 @@ checkList.addEventListener('change', markTodo);
  
 filterButtons.forEach((button) => {
     button.addEventListener('click', () => {
+ 
+        filterButtons.forEach((btn) => {
+            btn.classList.remove("active");
+        });
+       
+        button.classList.add("active");
+ 
         filterStatus = button.id.replace('-button', '');
- 
         filterTodoList();
- 
     });
-});
+})
  
 function updateCounter() {
     let uncheckedTodos = document.querySelectorAll('.li-checkbox:not(:checked)');
