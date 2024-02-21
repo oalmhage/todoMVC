@@ -3,11 +3,11 @@
     margin: 0;
     padding: 0;
 }
- 
+
 html {
     font: 14px 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
- 
+
 body {
     max-width: 550px;
     margin: auto;
@@ -20,7 +20,7 @@ body {
 .input-container {
     position: relative;
 }
- 
+
 .stats-container::before,
 .checklist::before,
 .input-container::before {
@@ -33,43 +33,45 @@ body {
     box-shadow: 0 0 50px rgba(0, 0, 0, 0.2);
     z-index: -1;
 }
- 
- 
+
+
 h1 {
     color: #b83f45;
     font-size: 80px;
-    font-weight: lighter;  
+    font-weight: lighter;
     margin-top: 25px;
     margin-bottom: 30px;
 }
- 
+
 .input-container {
     position: relative;
 }
- 
+
 #new-todo {
     width: 100%;
-    margin:0;
+    margin: 0;
     position: relative;
     font-size: 20px;
     padding: 20px 16px 20px 40px;
-    box-shadow: 0 -2px 1px #00000008;  
-    border:none;
+    box-shadow: 0 -2px 1px #00000008;
+    border: none;
     min-height: 72px;
 }
+
 input::placeholder {
-    color:rgba(0, 0, 0, 0.466);
+    color: rgba(0, 0, 0, 0.466);
     font-style: italic;
     font-size: 24px;
 }
-#new-todo:focus-visible{
+
+#new-todo:focus-visible {
     outline: none;
     border: 1px solid #cf7d7d;
-    box-shadow: 0 0 1px 1px #cf7d7d;  
+    box-shadow: 0 0 1px 1px #cf7d7d;
 }
- 
+
 .checklist li {
-    border-top: 1px solid rgb(224, 222, 225);  
+    border-top: 1px solid rgb(224, 222, 225);
     background-color: white;
     padding: 15px;
     font-size: 20px;
@@ -77,11 +79,12 @@ input::placeholder {
     display: flex;
     position: relative;
 }
-.checklist li:focus-within{
+
+.checklist li:focus-within {
     outline: none;
-    border:2px solid#cf7d7d8f;
+    border: 2px solid#cf7d7d8f;
 }
- 
+
 .remove-button {
     font-size: 20px;
     margin-left: auto;
@@ -91,168 +94,187 @@ input::placeholder {
     border: none;
     color: #949494;
 }
+
 .remove-button:hover {
     cursor: pointer;
     border: none;
     color: #cf7d7d;
     display: grid;
 }
+
 .checklist li .remove-button {
     display: none;
 }
+
 .checklist li:hover .remove-button {
-display: grid;
+    display: grid;
 }
- 
+
 .li-checkbox {
     width: 30px;
     height: 30px;
     margin-right: 20px;
-    border-radius: 50%; /* Gör checkboxen rund */
-    -webkit-appearance: none; /* Nollställ standardstilar för webkit-baserade webbläsare (Chrome, Safari) */
+    border-radius: 50%;
+    -webkit-appearance: none;
     appearance: none;
     outline: none;
     border: 1px solid #363636;
     position: relative;
 }
+
 .li-checkbox::before {
     content: "\2713";
     color: #008c00;
     font-size: 24px;
     position: absolute;
     top: 50%;
-    left: 50%;  
+    left: 50%;
     transform: translate(-50%, -50%);
     opacity: 0;
     transition: opacity 0.2s ease;
 }
-.li-checkbox:checked + .text {
+
+.li-checkbox:checked+.text {
     color: #949494;
     text-decoration: line-through;
 }
+
 .li-checkbox:checked::before {
     opacity: 1;
 }
+
 .li-checkbox:checked {
     border: 1px solid #008c00;
 }
- 
+
 #choose-all {
     width: 0;
     height: 0;
     position: absolute;
-    left:35px;
+    left: 35px;
     font-size: 20px;
     margin-top: 30px;
     border: none;
     -webkit-transform: rotate(90deg);
     transform: rotate(90deg);
-    color:rgba(0, 0, 0, 0.586);
+    color: rgba(0, 0, 0, 0.586);
 }
+
 #choose-all:focus {
-    color:rgba(0, 0, 0, 0.786);
+    color: rgba(0, 0, 0, 0.786);
 }
- 
+
 .stats-container {
     display: none;
     grid-template-columns: repeat(3, 1fr);
-    width: 100%;
     background-color: white;
     border-top: 1px solid rgb(224, 222, 225);
     padding: 10px;
 }
- 
-.counter{
+
+.counter {
     grid-column: 1;
     text-align: left;
     margin-top: 2px;
     padding-left: 10px;
 }
- 
-button{
+
+button {
     font-size: 14px;
 }
- 
-.filter-list {
+
+.filter-buttons {
     grid-column: 2;
     display: flex;
     align-items: center;
     gap: 15px;
-} 
- 
-.filter-item ,#clear-completed-button{
+}
+
+.filter-item,
+#clear-completed-button {
     border: none;
     background: transparent;
     color: #2c2c2c;
-    padding-left:6px;
-    padding-right:6px;
+    padding-left: 6px;
+    padding-right: 6px;
     padding-top: 2px;
     padding-bottom: 2px;
 
 }
+
 .filter-item:hover {
     box-shadow: 0 0 1px 1px #cf7d7d;
     outline: none;
     cursor: pointer;
 }
-.filter-item:focus {  
-    border: 1px solid #cf7d7d;  
+
+.filter-item:focus {
+    border: 1px solid #cf7d7d;
     box-shadow: 0 0 1px 1px #cf7d7d;
     outline: none;
 }
-.filter-item.active {     
-    box-shadow: 0 0 1px 1px #cf7d7d;     
-    outline: none; 
+
+.filter-item.active {
+    box-shadow: 0 0 1px 1px #cf7d7d;
+    outline: none;
 }
 
-.completed-button{
+#clear-completed-button {
     justify-self: end;
     grid-column: 3;
-}
-#clear-completed-button{
     display: none;
-    padding-right: 10px;  
+    padding-right: 10px;
 }
+
 #clear-completed-button:hover {
     text-decoration: underline;
     cursor: pointer;
 }
- 
+
 .real-footer {
     display: grid;
-    grid-template-columns: 1fr;
-    width: 100%;
-    margin-top: 50px;
-    padding: 20px;
+    grid-template-columns: 1fr; 
+    margin: 65px auto 0;
+    color: #4d4d4d;
     font-size: 11px;
+    text-shadow: 0 1px 0 rgba(255,255,255,.5);
+    text-align: center;
 }
- 
-@media (max-width: 600px) {
-    .stats-container,
-    .checklist,
-    .input-container {
-        width: 80%;
-        margin-left: auto;
-        margin-right: auto;
+
+@media screen and (max-width: 550px) {
+    .stats-container {
+        grid-template-columns: repeat(2, 1fr); 
+        grid-template-rows: auto auto; 
+        gap:10px;
     }
 
     input::placeholder {
-        font-size: smaller;
+        font-size: 20px;
+        padding-left: 20px;
     }
-    .stats-container {
-        grid-template-rows: 2fr;
-        align-items: center;
-        padding: 5px;
+
+    .counter {
+        grid-column: 1;
+        text-align: left; 
+        margin-top: 2px;
+        padding-left: 0; 
+        margin-top: 11px;
     }
- 
-    .stats-container .counter,
-    .stats-container .completed-button {
-        grid-row: 1; 
-    }
- 
-    .stats-container .filter-list {
-        grid-row: 2; 
-        display: flex;
+
+  
+    #clear-completed-button {
+        grid-column: 2; 
+        padding-right: 0; 
+        margin-top: 10px; 
     }
     
+    .filter-buttons {
+        grid-column: 1 / span 2; 
+        grid-row: 2; 
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
 }
+    
