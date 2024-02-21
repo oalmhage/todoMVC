@@ -1,7 +1,7 @@
 const { test, expect } = require('@playwright/test');
 
 test.beforeEach(async ({ page }) => {
-  await page.goto('file:///C:/Users/veron/OneDrive/Skrivbord/Skola/YH/Frontend%20i%20ett%20sammahang/%C3%96vningar/TodoMVC/todoMVC/index.html');;
+  await page.goto('https://oalmhage.github.io/todoMVC/');
 });
 
 test('add a single todo', async ({ page }) => {
