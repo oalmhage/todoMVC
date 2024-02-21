@@ -155,16 +155,16 @@ function filterTodoList() {
         switch (filterStatus) {
  
             case "All":
-                item.style.display = "block";
+                item.style.display = "flex";
                 break;
             case 'active':
-                item.style.display = checkbox.checked ? 'none' : 'block';
+                item.style.display = checkbox.checked ? 'none' : 'flex';
                 break;
             case 'completed':
-                item.style.display = checkbox.checked ? 'block' : 'none';
+                item.style.display = checkbox.checked ? 'flex' : 'none';
                 break;
             default:
-                item.style.display = 'block';
+                item.style.display = 'flex';
         }
  
     });

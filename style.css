@@ -31,7 +31,7 @@ h1 {
     width: 100%;
     margin:0;
     position: relative;
-    font-size: 20px; 
+    font-size: 24px; 
     padding: 20px 16px 20px 40px;
     box-shadow: 0 -2px 1px #00000008;  
     border:none;
@@ -51,7 +51,7 @@ input::placeholder {
     border-top: 1px solid rgb(224, 222, 225);  
     background-color: white;
     padding: 15px;
-    font-size: 20px;
+    font-size: 24px;
     list-style-type: none;
     display: flex;
     position: relative; 
@@ -162,6 +162,7 @@ display: grid;
 .filter-item:focus {   
     border: 1px solid #cf7d7d;   
     box-shadow: 0 0 1px 1px #cf7d7d;
+    font-style: inherit;
     outline: none;
 }
 .completed-button{
