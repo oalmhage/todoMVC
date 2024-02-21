@@ -18,36 +18,69 @@ body {
 h1 {
     color: #b83f45;
     font-size: 80px;
-    font-weight: lighter;
-    
+    font-weight: lighter;  
     margin-top: 25px;
     margin-bottom: 30px;
 }
  
 .input-container {
-    /* width: 100%; */
     position: relative;
 }
 
-.checklist{
+#new-todo {
     width: 100%;
-    position: relative;  
-      
+    margin:0;
+    position: relative;
+    font-size: 20px; 
+    padding: 20px 16px 20px 40px;
+    box-shadow: 0 -2px 1px #00000008;  
+    border:none;
+    min-height: 72px; /* Använd min-height istället för height */
+}
+input::placeholder {
+    color:rgba(0, 0, 0, 0.586);
+    font-style: italic;
+}
+#new-todo:focus-visible{
+    outline: none;
+    border: 1px solid #cf7d7d;
+    box-shadow: 0 0 1px 1px #cf7d7d;  
 }
  
 .checklist li {
-    border-top: 1px solid rgb(224, 222, 225);
+    border-top: 1px solid rgb(224, 222, 225);  
     background-color: white;
     padding: 15px;
     font-size: 20px;
     list-style-type: none;
     display: flex;
+    position: relative; 
 }
-
 .checklist li:focus-within{
     outline: none;
-    border: 1px solid #99999972;
-    box-shadow: 0 0 1px 1px #cf7d7d;
+    border:2px solid#cf7d7d8f;
+}
+
+.remove-button {
+    font-size: 20px;
+    margin-left: auto;
+    margin-right: 30px; 
+    width: 0;
+    height: 0;
+    border: none;
+    color: #949494;
+}
+.remove-button:hover {
+    cursor: pointer;
+    border: none;
+    color: #cf7d7d;
+    display: grid;
+}
+.checklist li .remove-button {
+    display: none;
+}
+.checklist li:hover .remove-button {
+display: grid;
 }
 
 .li-checkbox {
@@ -58,46 +91,29 @@ h1 {
     -webkit-appearance: none; /* Nollställ standardstilar för webkit-baserade webbläsare (Chrome, Safari) */
     appearance: none; 
     outline: none; 
-    border: 1px solid #000;
+    border: 1px solid #363636;
     position: relative;
 }
-   
 .li-checkbox::before {
     content: "\2713";
     color: #008c00;
-    border-color: #008c00;
     font-size: 24px;
     position: absolute;
     top: 50%;
-    left: 50%;
+    left: 50%;  
     transform: translate(-50%, -50%);
     opacity: 0;
     transition: opacity 0.2s ease;
 }
-
-/* För markerat tillstånd */
+.li-checkbox:checked + .text {
+    color: #949494;
+    text-decoration: line-through;
+}
 .li-checkbox:checked::before {
     opacity: 1;
 }
-
-.checklist li .remove-button {
-    display: none;
-}
-.checklist li:hover .remove-button {
-    display: block;
-}
-
-.remove-button {
-    font-size: 20px;
-    margin-left: auto;
-    margin-right: 20px;  
-    border:none;
-    width: 0;
-    height: 0;
-}
-
-.remove-button:hover {
-    cursor: pointer;
+.li-checkbox:checked {
+    border: 1px solid #008c00;
 }
 
 #choose-all {
@@ -112,27 +128,6 @@ h1 {
     transform: rotate(90deg);
 }
 
- 
-#new-todo {
-    width: 100%;
-    margin:0;
-    position: relative;
-    font-size: 20px; 
-    padding: 20px 16px 20px 40px;    
-    border:none;
-}
-
-input::placeholder {
-    color:rgba(0, 0, 0, 0.586);
-    font-style: italic;
-}
-
-
-#new-todo:focus-visible{
-    outline: none;
-    border: 1px solid #cf7d7d;
-    box-shadow: 0 0 1px 1px #cf7d7d;
-}
  
 .stats-container {
     display: none;
@@ -151,35 +146,28 @@ input::placeholder {
 
 .filter-list {
     grid-column: 2; 
-    display: flex; /* Säkerställ att filter-knapparna delar på samma rad */
+    display: flex;
     align-items: center;
-
 }
-
 .filter-item ,#clear-completed-button{
     border: none;
     background: transparent;
     color: #2c2c2c;
     padding:8px;
 }
-
 .filter-item:hover {
     box-shadow: 0 0 2px 2px #cf7d7d;
     outline: none;
 }
-
-.filter-item:focus {
-    
+.filter-item:focus {   
     border: 1px solid #cf7d7d;   
     box-shadow: 0 0 1px 1px #cf7d7d;
     outline: none;
 }
-
 .completed-button{
     justify-self: end;
     grid-column: 3;
 }
-
 #clear-completed-button{
     display: none;  
 } 
@@ -198,7 +186,6 @@ input::placeholder {
         grid-template-rows: 2fr;
         align-items: center;
         padding: 5px;
-
     }
 
     .stats-container .counter,
