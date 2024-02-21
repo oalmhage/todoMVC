@@ -10,7 +10,7 @@ document.getElementById("all-button").classList.add("active");
 let allChecked = false;
 let count = 0;
 
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", function () {
     var newTodoInput = document.getElementById("new-todo");
     newTodoInput.focus();
 

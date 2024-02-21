@@ -233,19 +233,19 @@ button {
 
 .real-footer {
     display: grid;
-    grid-template-columns: 1fr; 
+    grid-template-columns: 1fr;
     margin: 65px auto 0;
     color: #4d4d4d;
     font-size: 11px;
-    text-shadow: 0 1px 0 rgba(255,255,255,.5);
+    text-shadow: 0 1px 0 rgba(255, 255, 255, .5);
     text-align: center;
 }
 
 @media screen and (max-width: 550px) {
     .stats-container {
-        grid-template-columns: repeat(2, 1fr); 
-        grid-template-rows: auto auto; 
-        gap:10px;
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: auto auto;
+        gap: 10px;
     }
 
     input::placeholder {
@@ -255,26 +255,25 @@ button {
 
     .counter {
         grid-column: 1;
-        text-align: left; 
+        text-align: left;
         margin-top: 2px;
-        padding-left: 0; 
+        padding-left: 0;
         margin-top: 11px;
     }
 
-  
+
     #clear-completed-button {
-        grid-column: 2; 
-        padding-right: 0; 
-        margin-top: 10px; 
+        grid-column: 2;
+        padding-right: 0;
+        margin-top: 10px;
     }
-    
+
     .filter-buttons {
-        grid-column: 1 / span 2; 
-        grid-row: 2; 
+        grid-column: 1 / span 2;
+        grid-row: 2;
         display: flex;
         align-items: center;
         justify-content: center;
     }
 
 }
-    
