@@ -9,6 +9,12 @@ let clearCompletedButton = document.querySelector("#clear-completed-button");
 document.getElementById("all-button").classList.add("active");
 let allChecked = false;
 let count = 0;
+
+document.addEventListener("DOMContentLoaded", function() {
+    var newTodoInput = document.getElementById("new-todo");
+    newTodoInput.focus();
+    
+});
  
 form.addEventListener('submit', addToDo);
 checkList.addEventListener('click', deleteTodo);
