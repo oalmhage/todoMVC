@@ -247,11 +247,11 @@ button{
  
     .stats-container .counter,
     .stats-container .completed-button {
-        grid-row: 1; /* Båda ska vara i första kolumnen */
+        grid-row: 1; 
     }
  
     .stats-container .filter-list {
-        grid-row: 2; /* filter-list ska också vara i första kolumnen */
+        grid-row: 2; 
         display: flex;
     }
     
