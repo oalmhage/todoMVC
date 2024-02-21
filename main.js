@@ -81,7 +81,7 @@ function markAllTodos() {
     allChecked = !allChecked;
  
     if (allChecked) {
-        clearCompletedButton.style.display = "flex";
+        clearCompletedButton.style.display = "block";
         updateCounter(); // Återställ räkningen när du markerar alla
        
     }
@@ -94,7 +94,7 @@ function markAllTodos() {
 function handleCompletedButton() {
  
     let markedTodos = document.querySelectorAll('.checklist li.completed');
-    clearCompletedButton.style.display = markedTodos.length > 0 ? 'flex' : 'none';
+    clearCompletedButton.style.display = markedTodos.length > 0 ? 'block' : 'none';
  
 }
  
@@ -155,16 +155,16 @@ function filterTodoList() {
         switch (filterStatus) {
  
             case "All":
-                item.style.display = "flex";
+                item.style.display = "block";
                 break;
             case 'active':
-                item.style.display = checkbox.checked ? 'none' : 'flex';
+                item.style.display = checkbox.checked ? 'none' : 'block';
                 break;
             case 'completed':
-                item.style.display = checkbox.checked ? 'flex' : 'none';
+                item.style.display = checkbox.checked ? 'block' : 'none';
                 break;
             default:
-                item.style.display = 'flex';
+                item.style.display = 'block';
         }
  
     });

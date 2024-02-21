@@ -1,19 +1,47 @@
-// @ts-check
 const { test, expect } = require('@playwright/test');
 
-test('has title', async ({ page }) => {
-  await page.goto('https://playwright.dev/');
-
-  // Expect a title "to contain" a substring.
-  await expect(page).toHaveTitle(/Playwright/);
+test.beforeEach(async ({ page }) => {
+  await page.goto('file:///C:/Users/veron/OneDrive/Skrivbord/Skola/YH/Frontend%20i%20ett%20sammahang/%C3%96vningar/TodoMVC/todoMVC/index.html');;
 });
 
-test('get started link', async ({ page }) => {
-  await page.goto('https://playwright.dev/');
+test('add a single todo', async ({ page }) => {
+  
+  let newTodo = page.getByPlaceholder('What needs to be done?');
+  await newTodo.fill('Eat a bag of chips');
+  await newTodo.press('Enter');
 
-  // Click the get started link.
-  await page.getByRole('link', { name: 'Get started' }).click();
-
-  // Expects page to have a heading with the name of Installation.
-  await expect(page.getByRole('heading', { name: 'Installation' })).toBeVisible();
+  let todoText = await page.locator('.checklist p').textContent();
+  expect(todoText).toEqual('Eat a bag of chips');
 });
+
+test('add one todo, check it and confirm that counter turns to zero ', async ({ page }) => {
+  
+  let newTodo = page.getByPlaceholder('What needs to be done?');
+  await newTodo.fill('Snuggle Baby Yoda');
+  await newTodo.press('Enter');
+
+  let todoText = await page.locator('.checklist p').textContent();
+  expect(todoText).toEqual('Snuggle Baby Yoda');
+
+  let checkbox = await page.locator('.li-checkbox');
+  await checkbox.click();
+  await expect (page.locator('.counter')).toHaveText('0 Items left')
+
+});
+
+test('add three todos, check one and confirm that counter turns to two', async ({ page }) => {
+  
+  let newTodo = page.getByPlaceholder('What needs to be done?');
+  await newTodo.fill('Ask Sauron for advice');
+  await newTodo.press('Enter');
+  await newTodo.fill('Visit Brad Pitt in Hollywood');
+  await newTodo.press('Enter');
+  await newTodo.fill('Clean my bathroom');
+  await newTodo.press('Enter');
+
+  let checkbox = await page.locator('.li-checkbox').first();
+  await checkbox.click();
+  await expect (page.locator('.counter')).toHaveText('2 Items left')
+
+});
+
